@@ -35,6 +35,7 @@ Other languages: [:cn: Chinese](./README.md)
     * [Uninstalling](#uninstalling)
     * [Clear app cache data](#clear-app-cache-data)
     * [View Reception Activity](#view-reception-activity)
+    * [View Task Stack Activity](#view-task-stack-activity)
     * [View Running Services](#view-running-services)
     * [Query package detail information](#query-package-detail-information)
     * [Query application installation path](#query-application-installation-path)
@@ -692,6 +693,24 @@ mResumedActivity: ActivityRecord{8079d7e u0 com.cyanogenmod.trebuchet/com.androi
 Where `com.cyanogenmod.trebuchet / com.android.launcher3.Launcher` is currently in the foreground Activity.
 
 *The command above may not valid in Windows, you can try `adb shell dumpsys activity activities | findstr mResumedActivity` or `adb shell "dumpsys activity activities | grep mResumedActivity"`.
+
+### View Task Stack Activity
+
+command:
+
+```sh
+adb shell dumpsys activity activities "| grep '* [TH]'"
+```
+
+Example output:
+
+```sh
+ * TaskRecord{e6c96c #66 A=com.samples.nowinandroid U=0 StackId=666 sz=4}
+      * Hist #3: ActivityRecord{8079d8a u0 com.samples.nowinandroid/com.samples.nowinandroid.ThreeActivity t66}
+      * Hist #2: ActivityRecord{8079d8b u0 com.samples.nowinandroid/com.samples.nowinandroid.TwoActivity t66}
+      * Hist #1: ActivityRecord{8079d8c u0 com.samples.nowinandroid/com.samples.nowinandroid.OneActivity t66}
+      * Hist #0: ActivityRecord{8079d8d u0 com.samples.nowinandroid/com.samples.nowinandroid.MainActivity t66}
+```
 
 ### View Running Services
 
