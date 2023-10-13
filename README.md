@@ -39,6 +39,7 @@ Other languages: [:gb: English](./README.en.md)
     * [卸载应用](#卸载应用)
     * [清除应用数据与缓存](#清除应用数据与缓存)
     * [查看前台 Activity](#查看前台-activity)
+    * [查看任务栈Activity信息](#查看任务栈Activity信息)
     * [查看正在运行的 Services](#查看正在运行的-services)
     * [查看应用详细信息](#查看应用详细信息)
     * [查看应用安装路径](#查看应用安装路径)
@@ -719,6 +720,24 @@ mResumedActivity: ActivityRecord{8079d7e u0 com.cyanogenmod.trebuchet/com.androi
 其中的 `com.cyanogenmod.trebuchet/com.android.launcher3.Launcher` 就是当前处于前台的 Activity。
 
 *在 Windows 下以上命令可能不可用，可以尝试 `adb shell dumpsys activity activities | findstr mResumedActivity` 或 `adb shell "dumpsys activity activities | grep mResumedActivity"`。*
+
+### 查看任务栈Activity信息
+
+命令：
+
+```sh
+adb shell dumpsys activity activities "| grep '* [TH]'"
+```
+
+输出示例：
+
+```sh
+ * TaskRecord{e6c96c #66 A=com.samples.nowinandroid U=0 StackId=666 sz=4}
+      * Hist #3: ActivityRecord{8079d8a u0 com.samples.nowinandroid/com.samples.nowinandroid.ThreeActivity t66}
+      * Hist #2: ActivityRecord{8079d8b u0 com.samples.nowinandroid/com.samples.nowinandroid.TwoActivity t66}
+      * Hist #1: ActivityRecord{8079d8c u0 com.samples.nowinandroid/com.samples.nowinandroid.OneActivity t66}
+      * Hist #0: ActivityRecord{8079d8d u0 com.samples.nowinandroid/com.samples.nowinandroid.MainActivity t66}
+```
 
 ### 查看正在运行的 Services
 
